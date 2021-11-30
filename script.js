@@ -1,6 +1,7 @@
 const display = document.getElementById('carta-gerada');
 const insertLetter = document.getElementById('criar-carta');
 const inputLetter = document.getElementById('carta-texto');
+const counterOfWords = document.getElementById('carta-contador');
 const classes = [
   ['newspaper', 'magazine1', 'magazine2'],
   ['medium', 'big', 'reallybig'],
@@ -13,6 +14,7 @@ function removeOldLetter() {
   for (; textDisplay.length > 0;) {
     display.removeChild(textDisplay[0]);
   }
+  display.innerText = '';
 }
 function verifyEmptyText(arrOfWords) {
   for (let i = 0; i < arrOfWords.length; i += 1) {
@@ -45,7 +47,6 @@ function displayLetter() {
   const letter = inputLetter.value;
   const words = letter.split(' ');
   removeOldLetter();
-  display.innerText = '';
   const empty = verifyEmptyText(words);
   if (empty) {
     display.innerText = 'Por favor, digite o conteúdo da carta.';
@@ -54,9 +55,10 @@ function displayLetter() {
       const span = document.createElement('span');
       span.innerText = words[i];
       display.appendChild(span);
-      attatchClasses(span);
+      attatchClasses(span, 4);
     }
   }
+  counterOfWords.innerText = words.length;
 }
 function changeStyle(click) {
   const word = click.target;
