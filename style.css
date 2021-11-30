@@ -13,8 +13,13 @@
 }
 
 .magazine2 {
-  background-image: url(images/pink-pattern.png);
+  background-image: url('images/pink-pattern.png');
   color: fuchsia;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-weight: 900;
+}
+
+.medium {
+  font-size: 20px;
+  padding: 8px;
 }
