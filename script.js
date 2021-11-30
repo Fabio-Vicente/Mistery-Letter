@@ -8,6 +8,10 @@ const classes = [
   ['rotateleft', 'rotateright'],
   ['skewleft', 'skewright'],
 ];
+const settings = document.getElementById('settings');
+const clearButton = document.createElement('button');
+clearButton.innerText = 'Limpar';
+clearButton.className = 'clear';
 
 function removeOldLetter() {
   const textDisplay = display.children;
@@ -43,6 +47,9 @@ function attatchClasses(word, nClasses = 0) {
     initialClass += 1;
   }
 }
+function insertLetterButtons() {
+  settings.appendChild(clearButton);
+}
 function displayLetter() {
   const letter = inputLetter.value;
   const words = letter.split(' ');
@@ -57,8 +64,10 @@ function displayLetter() {
       display.appendChild(span);
       attatchClasses(span, 4);
     }
+    counterOfWords.innerText = words.length;
+    counterOfWords.nextElementSibling.innerText = 'palavras';
+    insertLetterButtons();
   }
-  counterOfWords.innerText = words.length;
 }
 function changeStyle(click) {
   const word = click.target;
@@ -67,6 +76,17 @@ function changeStyle(click) {
     attatchClasses(word, 4);
   }
 }
+function clearLetter() {
+  const words = display.children;
+  for (;words.length > 0;) {
+    display.removeChild(words[0]);
+  }
+  inputLetter.value = '';
+  counterOfWords.innerText = '';
+  counterOfWords.nextElementSibling.innerText = '';
+  settings.removeChild(clearButton);
+}
 
 insertLetter.onclick = displayLetter;
 display.onclick = changeStyle;
+clearButton.onclick = clearLetter;

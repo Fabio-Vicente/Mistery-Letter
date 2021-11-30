@@ -8,15 +8,22 @@
     <title>Mystery Box</title>
 </head>
 <body>
+    <header>
+        <h1>Carta <span id="mistery">Misteriosa</span></h1>
+    </header>
     <main>
-        <section>
+        <section id="input">
             <input id="carta-texto" type="text">
-            <button id="criar-carta"></button>
+            <button id="criar-carta">Enviar!</button>
         </section>
-        <section>
+        <section id="display">
             <p id="carta-gerada"></p>
-            <p id="carta-contador"></p>
+            <div class="count-words">
+                <p id="carta-contador"></p>
+                <label for="carta-contador"></label>
+            </div>
         </section>
+        <section id="settings"></section>
     </main>
     <script src="script.js"></script>
 </body>
