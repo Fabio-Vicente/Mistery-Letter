@@ -28,10 +28,13 @@ function reinitNumber(number, limit) {
   }
   return number;
 }
-function attatchClasses(word) {
-  const numberOfClassees = 1 + parseInt(Math.random() * classes.length, 10);
+function attatchClasses(word, nClasses = 0) {
+  let numberOfClasses = nClasses;
+  if (numberOfClasses < 1 || numberOfClasses > classes.length) {
+    numberOfClasses = 1 + parseInt(Math.random() * classes.length, 10);
+  }
   let initialClass = parseInt(Math.random() * classes.length, 10);
-  for (let i = 0; i < numberOfClassees; i += 1) {
+  for (let i = 0; i < numberOfClasses; i += 1) {
     initialClass = reinitNumber(initialClass, classes.length);
     const classPosition = parseInt(Math.random() * classes[initialClass].length, 10);
     word.classList.add(classes[initialClass][classPosition]);
@@ -55,5 +58,13 @@ function displayLetter() {
     }
   }
 }
+function changeStyle(click) {
+  const word = click.target;
+  if (word !== display) {
+    word.className = '';
+    attatchClasses(word, 4);
+  }
+}
 
 insertLetter.onclick = displayLetter;
+display.onclick = changeStyle;
